@@ -1,0 +1,27 @@
+﻿
+@{
+
+//Why does adding IEnumerable to CheeseCategory thing work? Without it my model is not processed right
+}
+@model CheeseMVC.Data.CheeseDbContext
+    
+<tr>
+    <th>Name</th>
+    <th>Description</th>
+    <td>Type</td>
+</tr>
+
+
+
+    @foreach (var cheese in Model.Categories)
+    {
+        <ul>
+
+            <tr>
+                <td>@cheese.Name</td>
+                <td>@cheese.ID</td>
+            </tr>
+
+            
+        </ul>
+    }
