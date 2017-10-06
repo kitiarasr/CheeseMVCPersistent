@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CheeseMVC.Data;
+using CheeseMVC.ViewModels;
+using CheeseMVC.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,5 +34,33 @@ namespace CheeseMVC.Controllers
         /*This creates a private field context of type CheeseDbContext. This object will be the mechanism with which we interact with objects stored in the database. The MVC framework will do the work of creating an instance of CheeseDbContext and passing it into our controller's constructor.
 
 This code would need to be added to each controller class that you want to have access to the persistent collections defined within CheeseDbContext.
-   */ }
+   */
+
+        public IActionResult Add()
+        {
+            AddCategoryViewModel addViewModel = new AddCategoryViewModel();
+            return View();
+
+        }
+
+        [HttpPost]
+        public IActionResult Add(AddCategoryViewModel addViewModel)
+        {
+            //model binding
+            if (ModelState.IsValid)
+            {
+                CheeseCategory newCategory = new CheeseCategory()
+                {
+                    Name = addViewModel.Name
+
+                };
+                context.Categories.Add(newCategory);
+                context.SaveChanges();
+
+                return Redirect("/Category");
+            }
+            return View(addViewModel);
+
+        }
+    }
 }

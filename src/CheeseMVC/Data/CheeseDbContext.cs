@@ -7,9 +7,19 @@ namespace CheeseMVC.Data
     {
         public DbSet<Cheese> Cheeses { get; set; }
 
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<CheeseMenu> CheeseMenus {get; set;}
+
         public CheeseDbContext(DbContextOptions<CheeseDbContext> options) 
             : base(options)
         { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CheeseMenu>()
+                .HasKey(c => new { c.CheeseID, c.MenuID });
+        } // this method sets the primary key of the CheeseMenu class and table.. to be composite key,
+        //consisting of both c.CheeseId and c.MenuID.????
 
         public DbSet<CheeseCategory> Categories { get; set; }
         //add a new Db Set so that we get instances to be stored in database
