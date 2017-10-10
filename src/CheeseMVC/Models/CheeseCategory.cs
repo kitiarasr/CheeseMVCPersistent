@@ -8,7 +8,6 @@ namespace CheeseMVC.Models
 {
     public class CheeseCategory
     {
-     //   [Key]
         public int ID { get; set; }   //I made this internal in order for ID and name to be printed out of the view. Any other way?
         public string Name { get; set; }
         IList<Cheese> Cheeses { get; set; }

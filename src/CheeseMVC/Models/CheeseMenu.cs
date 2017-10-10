@@ -12,7 +12,7 @@ namespace CheeseMVC.Models
 
         public int CheeseID { get; set; }
         public Cheese Cheese { get; set; }
-        IList<CheeseMenu> CheeseMenus { get; set; }
+     
 
     }
 }

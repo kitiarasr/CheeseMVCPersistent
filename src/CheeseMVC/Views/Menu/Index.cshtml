@@ -1,0 +1,34 @@
+﻿
+@{
+//  Bad attempt at @model for reference: CheeseMVC.Controllers.MenuController.IList<Cheese> -->
+
+
+/*Each menu in the list should link to a URL of the form /Menu/ViewMenu/5, where 5 could be the 
+ * ID of any menu. Add these links now, using the tag helpers asp-controller, asp-action, and asp-rout-*}*/
+
+// <form asp-controller="Menu" asp-action="Index" asp-route-id="@menu.ID" method="post">
+
+// </form>
+//IS MENU.ID BEING SENT TO THE VIEWMENU THROUGH THE VIEW MODEL??
+
+}
+@model IList<CheeseMVC.Models.Menu>
+
+    
+ <form asp-controller="Menu" asp-action="ViewMenu" method="post">
+
+    @foreach (var menu in Model)
+    {
+        <p>
+            <a asp-controller="Menu"
+               asp-action="ViewMenu"
+               asp-route-id="@menu.ID">
+                Menu @menu.ID
+            </a>
+        </p>
+
+    }
+  <p><a asp-controller="Menu" asp-action="Add"> Add Menu </a></p>
+     </form>
+
+

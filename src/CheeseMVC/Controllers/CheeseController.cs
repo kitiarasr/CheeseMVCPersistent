@@ -22,32 +22,35 @@ namespace CheeseMVC.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            IList<Cheese> cheeses = context.Cheeses.Include(c => c.Category).ToList(); //EEOR DOESNT RECOGNIZE CATEGORYID
+            IList<Cheese> cheeses = context.Cheeses.Include(c => c.Category).ToList(); 
 
             return View(cheeses);
         }
 
         public IActionResult Add()
         {
-           // if (context.Categories != null)  //just in case categories has nothing inside, I dont want this to possible break
-          //  {
+
                 AddCheeseViewModel addCheeseViewModel = new AddCheeseViewModel(context.Categories.ToList());
                 return View(addCheeseViewModel);
-          //  }
-        
-          //  AddCheeseViewModel addCheeseViewModel2 = new AddCheeseViewModel();
-          
-         //   return View(addCheeseViewModel2);
+
         }
 
         [HttpPost]
         public IActionResult Add(AddCheeseViewModel addCheeseViewModel)
         {
          
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)// && addCheeseViewModel.CategoryID != 0)
             {
-                CheeseCategory newCheeseCategory =
-                  context.Categories.Single(c => c.ID == addCheeseViewModel.CategoryID);
+                CheeseCategory newCheeseCategory = new CheeseCategory();
+                if (addCheeseViewModel.CategoryID != 0)
+                {
+                     newCheeseCategory =
+                     context.Categories.Single(c => c.ID == addCheeseViewModel.CategoryID);
+                }
+                else
+                {
+                    newCheeseCategory = null;
+                }
 
                 // Add the new cheese to my existing cheeses
                 Cheese newCheese = new Cheese

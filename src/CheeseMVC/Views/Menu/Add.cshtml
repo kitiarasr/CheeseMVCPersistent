@@ -1,0 +1,24 @@
+﻿@{
+
+//ViewBag.Title = "New Menu";
+
+
+//erase all below and do the work
+ //  @ViewBag.Title;
+}
+
+
+@model CheeseMVC.ViewModels.AddMenuViewModel
+
+
+<form asp-controller="Menu" asp-action="Add" method="post">
+    <label asp-for="Name"> </label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+
+    <input type="submit" value="Submit"/>
+</form>
+
+
+  
+

@@ -1,0 +1,28 @@
+﻿
+@model CheeseMVC.ViewModels.ViewMenuViewModel
+@{
+ //   ViewBag.Title = Model.Menu.Name;
+
+    //The link in the form creates a url like /Meny/AddItem/5, where 
+    //5 is a menu ID which will link to a form to add items to the given menu.
+
+}
+
+ @Model.Menu.Name
+@if (Model.Items.Count != 0)
+{
+
+<ul>
+
+    @foreach(var item in @Model.Items)
+    {
+       <li> @item.Cheese.Name </li>
+
+    }
+
+
+
+</ul>
+
+}
+<a asp-controller="Menu" asp-action="AddItem" asp-route-id="@Model.Menu.ID">Add Item </a>
